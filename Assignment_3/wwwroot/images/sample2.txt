@@ -1,0 +1,2 @@
+app and the body would show the content of the current webphige. The skeleton code for that container would look something like this in React:
+

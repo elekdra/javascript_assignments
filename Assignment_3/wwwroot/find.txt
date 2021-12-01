@@ -1,0 +1,160 @@
+let nextIndex;
+let nextContent;
+var searchValue;
+var innerLoop = 0;
+var startSearchIndex;
+var endSearchIndex;
+function GetContentPart() {
+  // console.log('next content');
+  contentPage = contentPage.substring(startSearchIndex, endSearchIndex);
+
+  if (startIndex == -1) {
+    contentPage = content[innerLoop].join(' ');
+    fullContent = contentPage;
+  }
+}
+var tempIndex = 0;
+function FindtheWord() {
+  searchValue = document.getElementById('search-value').value;
+
+  GetContentPart();
+
+  startIndex = contentPage.search(searchValue);
+  // console.log('start index');
+  // console.log(startIndex);
+  // console.log('prev content');
+
+  if (startIndex === -1) {
+    innerLoop++;
+    go_next(1);
+  } else {
+    nextIndex = startIndex + searchValue.length;
+
+    // console.log('content is' + contentPage.substring(startIndex, nextIndex));
+  }
+  const input = document.getElementById('inputTextToSave');
+  input.focus();
+
+  prevContent = fullContent.substring(
+    0,
+    startIndex + (fullContent.length - contentPage.length - 1)
+  );
+  nextContent = fullContent.substring(
+    startIndex + (fullContent.length - contentPage.length),
+    endSearchIndex
+  );
+  input.setSelectionRange(
+    prevContent.length + 1,
+    prevContent.length + searchValue.length
+  );
+
+  console.log('prevContent   :');
+  console.log(prevContent);
+  console.log('searchContent:');
+  console.log(searchValue);
+  console.log('nextContent  :');
+  console.log(nextContent);
+  startSearchIndex = nextIndex;
+}
+document.getElementById('search-value').addEventListener('change', function () {
+  go_first(0);
+  startIndex = -1;
+});
+function FindAndReplace() {
+  searchValue = document.getElementById('search-value').value;
+  var replaceValue = document.getElementById('replace-value').value;
+
+  var currentContent = fullContent
+    .substring(
+      startIndex + (fullContent.length - contentPage.length - 1),
+      endSearchIndex
+    )
+    .replace(searchValue, replaceValue);
+  var completeString =
+    fullContent.substring(
+      0,
+      startIndex + (fullContent.length - contentPage.length - 1)
+    ) + currentContent;
+  fullContent = completeString;
+  document.getElementById('inputTextToSave').value = completeString;
+  var checkExistWord = document
+    .getElementById('inputTextToSave')
+    .value.indexOf(searchValue);
+  if (checkExistWord === -1) {
+    go_next(1);
+  }
+}
+
+document.getElementById('searchnext').addEventListener(
+  'click',
+  function () {
+    console.log('hye');
+    var myElement = document.getElementById('inputTextToSave');
+    var startPosition = myElement.selectionStart;
+    var endPosition = myElement.selectionEnd;
+  },
+  false
+);
+function SaveFileToServer() {
+  var fileContent = document.getElementById('inputTextToSave').value;
+
+  var fileName = document.getElementById('hid_file').value;
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+    xhttp.open('PUT', 'http://localhost:5000/api/fileservice/filesave', true);
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send(
+      JSON.stringify({
+        fileName: fileName,
+        fileContent: fileContent,
+      })
+    );
+  };
+}
+function HighLightContent() {
+  console.log('highlight:', highLightStart);
+  firstSpanContent = prevfullcontent.substring(0, highLightStart + startOffset-originallen+replaceLen);
+  console.log(firstSpanContent);
+
+  contentPage = contentPage.substring(highLightEnd, contentPage.length);
+  input = document.getElementById('inputTextToSave');
+
+  input.focus();
+  input.setSelectionRange(
+    highLightStart + startOffset,
+    highLightEnd + startOffset
+  );
+  startOffset += highLightEnd;
+}
+
+function FindtheWord() {
+  searchValue = document.getElementById('search-value').value;
+  highLightStart = contentPage.search(searchValue);
+  highLightEnd = highLightStart + searchValue.length;
+  HighLightContent();
+  console.log(highLightStart);
+  if (highLightStart === -1) {
+    go_next(1);
+    contentPage = document.getElementById('inputTextToSave').value;
+    console.log(contentPage);
+    prevfullcontent = contentPage;
+    startOffset = 0;
+  }
+}
+
+function FindAndReplace() {
+  searchValue = document.getElementById('search-value').value;
+  originallen=searchValue.length;
+
+  var replaceValue = document.getElementById('replace-value').value;
+  replaceLen=replaceValue.length;
+  console.log('prevContent:', firstSpanContent);
+  console.log('afterContent :', contentPage);
+  var completereplaceString = firstSpanContent + replaceValue + contentPage;
+  console.log(completereplaceString);
+  prevfullcontent = completereplaceString;
+  document.getElementById('inputTextToSave').value = prevfullcontent;
+}

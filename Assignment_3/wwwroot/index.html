@@ -1,0 +1,99 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+    <style>
+      .scrolling-wrapper {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        white-space: nowrap;
+        width: 15%;
+        height: auto;
+        font-size: large;
+        margin-left: 42%;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <h1 class="text-editor"><b>SEARCH AND REPLACE</b></h1>
+    <div class="scrolling-wrapper">
+      <div class="filelists" id="files"></div>
+    </div>
+    <div class="find-replace">
+      <input
+        id="search-value"
+        class="input"
+        type="text"
+        style="margin-left: 1em"
+      />
+      <button
+        id="searchnext"
+        class="findreplace_button"
+        onclick="FindtheWord()"
+        style="margin-left: 1.5em"
+      >
+        Search Next
+      </button>
+      <br />
+      <br />
+      <input
+        id="replace-value"
+        class="input"
+        type="text"
+        style="margin-left: 1em"
+      />
+      <button
+        class="findreplace_button"
+        style="margin-left: 1.5em"
+        onclick="FindAndReplace()"
+      >
+        Replace
+      </button>
+      <br />
+      <!-- <button
+        class="findreplace_button"
+        style="margin-left: 6em; margin-top: 1em"
+        onclick="FindAndReplace()"
+      >
+        Apply
+      </button> -->
+    </div>
+
+    <div style="margin-top: 3em">
+      <center>
+        <textarea
+          rows="25"
+          cols="100"
+          type="text"
+          id="inputTextToSave"
+          class="text-area"
+        >
+        </textarea>
+      </center>
+    </div>
+
+    <div style="margin-top: 1em">
+      <center>
+        <button class="btn" id="first" onclick="go_first(0)">First</button>
+        <button class="btn" id="prev" onclick="go_next(-1)">Prev</button>
+        <button class="btn" id="next" onclick="go_next(1)">Next</button>
+        <button class="btn" id="end" onclick="go_first(100)">Last</button>
+      </center>
+    </div>
+    <div>
+      <div style="margin-top: 1em"></div>
+      <center>
+        <button class="btn" onclick="SaveFileToServer()">SAVE</button>
+      </center>
+    </div>
+    <input type="hidden" id="hid_data" name="hid_data" />
+    <input type="hidden" id="hid_file" name="hid_file" />
+    <div class="files" id="files"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

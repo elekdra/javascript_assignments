@@ -1,0 +1,83 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  background-color: #031929;
+  color: white;
+}
+
+.text-editor {
+  text-align: center;
+  color: #f0a500;
+}
+.list-class {
+  height: 30%;
+  width: 20%;
+  background-color: antiquewhite;
+  margin-left: 40%;
+}
+.find-replace {
+  color: white;
+  margin-left: 41%;
+  margin-top: 3%;
+}
+.filelist-button {
+  display: grid;
+  text-decoration: none;
+
+  border-block-color: unset;
+}
+.listbutton {
+  font-size: 1em;
+  background-color: ivory;
+  font-family: Arial, Helvetica, sans-serif;
+  border-block-color: unset;
+  /* color: white;
+  background-color: black; */
+}
+.input {
+  height: 2em;
+  width: 11em;
+  margin-right: 2em;
+}
+
+.btn {
+  transition-duration: 0.4s;
+  height: 2em;
+  width: 7em;
+  border-radius: 1em;
+  border-style: none;
+  background-color: #f0a500;
+  color: black;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #87ceeb; /* Green */
+  color: rgb(17, 77, 95);
+  border-color: black;
+}
+.findreplace_button {
+  transition-duration: 0.4s;
+  height: 2em;
+  width: 7em;
+  border-radius: 1em;
+  border-style: none;
+  background-color: #f0a500;
+  color: black;
+
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.findreplace_button:hover {
+  background-color: #87ceeb; /* Green */
+  color: rgb(17, 77, 95);
+  border-color: black;
+}
+.listbutton:hover {
+  background-color: #87ceeb; /* Green */
+  color: rgb(17, 77, 95);
+  border-color: black;
+}

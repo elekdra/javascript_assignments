@@ -1,0 +1,1 @@
+the browser content. Instead, using libraries like react-router almostows containers to be swapped in and out dynamicalmosty based on the current URL localmostion,and thisall happens
